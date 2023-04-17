@@ -8,6 +8,9 @@
         public string Content { get; set; }
         public int AuthorId { get; set; }
 
+        /// <summary>
+        /// Constructor which is only used to build on top of the other constructor
+        /// </summary>
         public BlogPost(int id, DateTime creationDate, string title, string content, int authorId) : this
             (creationDate, title, content, authorId)
         {
@@ -22,6 +25,9 @@
             AuthorId = authorId;
         }
 
+        /// <summary>
+        /// Empty constructor to avoid error on edit
+        /// </summary>
         public BlogPost()
         {
 

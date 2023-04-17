@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogSharp.MVC.Controllers
 {
-    //[Controller]
     public class BlogPostsController : Controller
     {
         IBlogPostDao _blogPostDao;

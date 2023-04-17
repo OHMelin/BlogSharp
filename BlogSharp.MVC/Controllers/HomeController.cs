@@ -7,6 +7,9 @@ namespace BlogSharp.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Dependency injection
+        /// </summary>
         IBlogPostDao _blogPostDao;
 
         public HomeController(IBlogPostDao blogPostDao)
@@ -14,6 +17,10 @@ namespace BlogSharp.MVC.Controllers
             _blogPostDao = blogPostDao;
         }
 
+        /// <summary>
+        /// Index page
+        /// </summary>
+        /// <returns>10 newest blogs</returns>
         public IActionResult Index()
         {
             return View(_blogPostDao.Get10NewestBlogPosts());
