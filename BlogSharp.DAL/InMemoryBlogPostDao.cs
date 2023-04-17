@@ -24,6 +24,26 @@ namespace BlogSharp.DAL
             _blogPosts.Add(new BlogPost(10, DateTime.Now, "Tenth Blog Post", "This is the tenth blog post", 1));
         }
 
-        public IEnumerable<BlogPost> Get10NewestBlogPosts() => _blogPosts;
+        public int AddBlogPost(BlogPost blogPost)
+        {
+            _blogPosts.Add(blogPost);
+            return 42;
+        }
+
+        public IEnumerable<BlogPost> Get10NewestBlogPosts() => _blogPosts.Take(15);
+
+        public IEnumerable<BlogPost> GetAll() => _blogPosts;
+
+        public BlogPost? GetById(int id) => _blogPosts.FirstOrDefault(b => b.Id == id);
+
+        public bool Update(BlogPost blogPost)
+        {
+            var postToEdit = GetById(blogPost.Id);
+            if(postToEdit == null) { return false; }
+
+            postToEdit.Title = blogPost.Title;
+            postToEdit.Content = blogPost.Content;
+            return true;
+        }
     }
 }

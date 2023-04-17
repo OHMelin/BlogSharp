@@ -21,6 +21,11 @@
             Content = content;
             AuthorId = authorId;
         }
+
+        public BlogPost()
+        {
+
+        }
     }
 
 
