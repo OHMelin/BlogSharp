@@ -1,4 +1,5 @@
-﻿using BlogSharp.MVC.Models;
+﻿using BlogSharp.DAL;
+using BlogSharp.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,18 +7,18 @@ namespace BlogSharp.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        IBlogPostDao _blogPostDao;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBlogPostDao blogPostDao)
         {
-            _logger = logger;
+            _blogPostDao = blogPostDao;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_blogPostDao.Get10NewestBlogPosts());
         }
-
+        
         public IActionResult Privacy()
         {
             return View();

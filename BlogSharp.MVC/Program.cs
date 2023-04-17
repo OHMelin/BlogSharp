@@ -1,3 +1,5 @@
+using BlogSharp.DAL;
+
 namespace BlogSharp.MVC
 {
     public class Program
@@ -8,7 +10,7 @@ namespace BlogSharp.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddSingleton<IBlogPostDao>(new InMemoryBlogPostDao());
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
