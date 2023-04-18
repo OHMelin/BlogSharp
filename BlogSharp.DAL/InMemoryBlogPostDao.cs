@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,14 @@ namespace BlogSharp.DAL
         {
             _blogPosts.Add(blogPost);
             return 42;
+        }
+
+        public bool Delete(BlogPost blogPost)
+        {
+            var postToDelete = GetById(blogPost.Id);
+            if (postToDelete == null) { return false; }
+            _blogPosts.Remove(postToDelete);
+            return true;
         }
 
         /// <summary>

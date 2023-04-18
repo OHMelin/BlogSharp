@@ -22,7 +22,7 @@ namespace BlogSharp.MVC.Controllers
         // GET: BlogPostsController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_blogPostDao.GetById(id));
         }
 
         // GET: BlogPostsController/Create
@@ -74,16 +74,19 @@ namespace BlogSharp.MVC.Controllers
         // GET: BlogPostsController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var blogPost = _blogPostDao.GetById(id);
+            if(blogPost == null) { return NotFound(); }
+            return View(blogPost);
         }
 
         // POST: BlogPostsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, BlogPost blogPost)
         {
             try
             {
+                if(!_blogPostDao.Delete(blogPost)) { return NotFound(); }
                 return RedirectToAction(nameof(Index));
             }
             catch

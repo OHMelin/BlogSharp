@@ -31,5 +31,7 @@
         /// </summary>
         /// <returns>If update was successful, true or false</returns>
         bool Update(BlogPost blogPost);
+
+        bool Delete(BlogPost blogPost);
     }
 }
